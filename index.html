@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Jensen Wong | TicketFlow — Professional Ticketing Portfolio</title>
+  <!-- Google Fonts & simple reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fb;
+      color: #1a2634;
+      line-height: 1.4;
+    }
+
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 2rem 2rem 3rem;
+    }
+
+    /* header & branding */
+    .portfolio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid #e9edf2;
+      padding-bottom: 1.25rem;
+    }
+    .logo-area h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1E3A6F, #2B5F8A);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+    .logo-area p {
+      color: #5b6f82;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    .badge {
+      background: #eef2ff;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1e4a76;
+    }
+    .badge i {
+      margin-right: 6px;
+    }
+
+    /* showcase grid */
+    .showcase-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .card-panel {
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.02);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+    .card-panel:hover {
+      transform: translateY(-4px);
+    }
+    .panel-header {
+      padding: 1.5rem 2rem 0.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .panel-header h2 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #0b2b3b;
+    }
+    .stat-badge {
+      background: #eef2fa;
+      border-radius: 40px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .filter-bar {
+      padding: 1rem 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      background: #fafcff;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .filter-btn {
+      background: transparent;
+      border: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #4a5b6e;
+    }
+    .filter-btn.active {
+      background: #1e3a5f;
+      color: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .ticket-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .ticket-table th {
+      text-align: left;
+      padding: 1rem 2rem;
+      background: #f8fafd;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #4a627a;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .ticket-table td {
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #edf2f7;
+      font-size: 0.9rem;
+      vertical-align: middle;
+    }
+    .priority-high {
+      background: #fee9e6;
+      color: #c2410c;
+      font-weight: 600;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      display: inline-block;
+    }
+    .priority-medium {
+      background: #fff0db;
+      color: #b45309;
+      font-weight: 600;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+    }
+    .priority-low {
+      background: #e3f7ec;
+      color: #2b6e3c;
+      font-weight: 600;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #eef2ff;
+      padding: 0.25rem 0.75rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .status-open { background: #e0f2fe; color: #0369a1; }
+    .status-progress { background: #fff0db; color: #b45309; }
+    .status-resolved { background: #e0f2e9; color: #2b6e3c; }
+    .action-icons i {
+      margin: 0 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #6f8faa;
+      transition: 0.1s;
+    }
+    .action-icons i:hover { color: #1e5a7d; transform: scale(1.05); }
+
+    /* add ticket form */
+    .add-ticket-area {
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+      padding: 1.5rem 2rem;
+      margin-top: 1rem;
+    }
+    .section-title {
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: flex-end;
+      margin-bottom: 0.5rem;
+    }
+    .form-group {
+      flex: 1;
+      min-width: 160px;
+    }
+    .form-group label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #5b6f82;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border-radius: 14px;
+      border: 1px solid #cfdfed;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      background: #fff;
+      transition: 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #2b6a9f;
+      box-shadow: 0 0 0 3px rgba(30, 58, 111, 0.1);
+    }
+    .btn-primary {
+      background: #1e3a5f;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 600;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      background: #0f2c49;
+      transform: scale(0.98);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #cbdde9;
+      border-radius: 40px;
+      padding: 0.5rem 1rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .stats-panel {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0 1rem;
+    }
+    .stat-card {
+      background: #f9fbfe;
+      border-radius: 24px;
+      padding: 0.8rem 1.5rem;
+      flex: 1;
+      text-align: center;
+      border: 1px solid #e9edf2;
+    }
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #1f4e79;
+    }
+    hr {
+      margin: 1.2rem 0;
+      border: none;
+      border-top: 1px solid #eef2f8;
+    }
+    .footer-note {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: #7e92a5;
+    }
+    @media (max-width: 780px) {
+      .container { padding: 1rem; }
+      .ticket-table th, .ticket-table td { padding: 0.8rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- Professional header with dynamic identity -->
+  <div class="portfolio-header">
+    <div class="logo-area">
+      <h1><i class="fas fa-ticket-alt" style="color:#1e3a5f;"></i> TicketFlow</h1>
+      <p>Intelligent ticketing system • real-time collaboration • enterprise ready</p>
+    </div>
+    <div class="badge">
+      <i class="fas fa-check-circle"></i> Live Demo | v2.4
+    </div>
+  </div>
+
+  <!-- STATS DASHBOARD (authentic metrics) -->
+  <div class="stats-panel" id="statsPanel">
+    <!-- dynamic stats via js -->
+  </div>
+
+  <!-- MAIN TICKET MANAGER (Professional table) -->
+  <div class="card-panel">
+    <div class="panel-header">
+      <h2><i class="fas fa-list-ul"></i> Support tickets</h2>
+      <div class="stat-badge"><i class="fas fa-sync-alt"></i> Live updates</div>
+    </div>
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-filter="all">All tickets</button>
+      <button class="filter-btn" data-filter="open">Open</button>
+      <button class="filter-btn" data-filter="in-progress">In Progress</button>
+      <button class="filter-btn" data-filter="resolved">Resolved</button>
+    </div>
+    <div style="overflow-x: auto;">
+      <table class="ticket-table" id="ticketTable">
+        <thead>
+          <tr><th>ID</th><th>Title</th><th>Priority</th><th>Status</th><th>Created</th><th style="width:80px">Actions</th></tr>
+        </thead>
+        <tbody id="ticketBody">
+          <!-- JS injected ticket rows -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ADD NEW TICKET + ADVANCED FEATURE (Rich text description) -->
+  <div class="add-ticket-area">
+    <div class="section-title"><i class="fas fa-plus-circle"></i> Create new support ticket</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Ticket title</label>
+        <input type="text" id="ticketTitle" placeholder="e.g., Login issue on mobile app" />
+      </div>
+      <div class="form-group">
+        <label>Priority</label>
+        <select id="ticketPriority">
+          <option value="High">🔴 High</option>
+          <option value="Medium" selected>🟠 Medium</option>
+          <option value="Low">🟢 Low</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Initial status</label>
+        <select id="ticketStatus">
+          <option value="Open">Open</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Resolved">Resolved</option>
+        </select>
+      </div>
+      <div class="form-group" style="flex:2;">
+        <label>Description (optional)</label>
+        <textarea id="ticketDesc" rows="1" placeholder="Additional context ..."></textarea>
+      </div>
+      <div class="form-group">
+        <button class="btn-primary" id="createTicketBtn"><i class="fas fa-plus"></i> Add ticket</button>
+      </div>
+    </div>
+    <!-- Authentic micro-feature: bulk demo reset & latest activity info -->
+    <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 12px;">
+      <button class="btn-outline" id="resetDemoBtn"><i class="fas fa-database"></i> Load demo dataset</button>
+      <span style="font-size: 0.7rem; align-self: center; color:#66809a;"><i class="fas fa-clock"></i> Real-time sync · activity log integrated</span>
+    </div>
+  </div>
+  
+  <!-- additional professional feature: activity feed (authentic ticketing history) -->
+  <div class="card-panel" style="margin-top: 1.5rem;">
+    <div class="panel-header">
+      <h2><i class="fas fa-history"></i> Activity stream</h2>
+      <div class="stat-badge"><i class="fas fa-rss"></i> last actions</div>
+    </div>
+    <div style="padding: 0.5rem 2rem 1.5rem 2rem;" id="activityFeed">
+      <!-- dynamic activity list -->
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <i class="fas fa-shield-alt"></i> Enterprise ticketing solution — role-based views, audit trail, SLA ready
+  </div>
+</div>
+
+<script>
+  // ---------- AUTHENTIC TICKET DATA MODEL ----------
+  let tickets = [
+    { id: "T-1001", title: "Unable to reset password", priority: "High", status: "Open", createdAt: "2025-04-10", description: "User receives 500 error on forgot password" },
+    { id: "T-1002", title: "Dashboard chart not loading", priority: "Medium", status: "In Progress", createdAt: "2025-04-09", description: "Data visualization stuck on loading spinner" },
+    { id: "T-1003", title: "Invoice PDF generation fails", priority: "High", status: "In Progress", createdAt: "2025-04-08", description: "Timeout on large reports" },
+    { id: "T-1004", title: "Mobile app crashes on login", priority: "High", status: "Open", createdAt: "2025-04-11", description: "Reproducible on iOS 17" },
+    { id: "T-1005", title: "Update user profile avatar", priority: "Low", status: "Resolved", createdAt: "2025-04-05", description: "CDN cache fixed" },
+    { id: "T-1006", title: "Two-factor email delay", priority: "Medium", status: "Resolved", createdAt: "2025-04-07", description: "Resolved after queue optimization" }
+  ];
+
+  let activityLog = [];   // store activities
+
+  // Helper: add activity message with timestamp
+  function addActivity(message, type = "info") {
+    const now = new Date();
+    const timestamp = now.toLocaleTimeString([], { hour: '2-digit', minute:'2-digit', second:'2-digit' });
+    activityLog.unshift({ message, timestamp, type });
+    if (activityLog.length > 12) activityLog.pop();
+    renderActivityFeed();
+  }
+
+  // Render activity feed UI
+  function renderActivityFeed() {
+    const feedDiv = document.getElementById('activityFeed');
+    if (!feedDiv) return;
+    if (activityLog.length === 0) {
+      feedDiv.innerHTML = `<div style="padding: 1rem 0; color:#8ba0b2;"><

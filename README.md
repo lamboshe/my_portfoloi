@@ -46,8 +46,7 @@ Follow these steps to run the project locally and explore the ticketing dashboar
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/ticketflow-pro.git
-   cd ticketflow-pro
+   git clone https://https://github.com/Emojoy-del/Real-quantum-coders-.https://github.com/Emojoy-del/Real-quantum-coders-.
 
 ticketflow-pro/
 ├── index.html          # Main application (self-contained HTML/CSS/JS)
